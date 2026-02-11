@@ -1,0 +1,116 @@
+body {
+    margin:0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/heart-bg.jpg");
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+#envelope-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+
+#envelope{
+    width: 20em;
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
+}
+
+#envelope-container p {
+    margin-top:2em;
+    font-size:3em;
+}
+
+@keyframes pulse {
+    0% {
+        transform:scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#letter-container{
+    display: none;
+    position:fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-window {
+    display: flex;
+    justify-content: center;
+    height: 60vh;
+    width: 100%;
+    text-align: center;
+    background-image: url("../images/window.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scale(0.4);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.letter-window.open {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top:auto;
+}
+
+.yes-btn {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+}
+
+.no-btn {
+    width: 120px;
+    height: auto;
+    display: inline-block;
+}
+
+.yes-btn:hover {
+    animation: pulse 1.3s infinite;
+}
+
+#letter-content {
+    height: 50vh;
+}
+
+#letter-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#letter-dog {
+    width: 10em;
+}
+
+.final-text{
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255,240,240,0.5);
+    border-radius: 12px;
+    margin-top: 10em;
+}
