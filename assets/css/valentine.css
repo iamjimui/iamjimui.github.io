@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: center;
     height: 60vh;
-    width: 100%;
+    width: 70em;
     text-align: center;
     background-image: url("../images/window.png");
     background-size: contain;
