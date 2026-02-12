@@ -21,7 +21,6 @@
       <img src="./assets/images/envelope.png" alt="Envelope" id="envelope" />
       <p>Letter for You</p>
     </div>
-
     <div id="letter-container">
       <div class="letter-window">
         
