@@ -26,8 +26,8 @@
         
         <div id="letter-content">
           <div id="letter-body">
-          
-            <div class="no-wrapper" style="margin-top: 15vh;">
+
+            <div class="no-wrapper letter-dog-wrapper">
               <img src="./assets/images/maltesedogcheerup.gif" class="dog" id="letter-dog" />
             </div>
             
