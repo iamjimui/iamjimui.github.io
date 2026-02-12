@@ -26,6 +26,7 @@
         
         <div id="letter-content">
           <div id="letter-body">
+          
             <div class="no-wrapper" style="margin-top: 15vh;">
               <img src="./assets/images/maltesedogcheerup.gif" class="dog" id="letter-dog" />
             </div>
