@@ -1,0 +1,180 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+#background-music {
+  position:absolute;
+  z-index:100;
+}
+
+#loading-page {
+  width:100%;
+  height: 100%;
+  position:absolute;
+  background-color: #ad8671;
+  z-index:2;
+  color: white;
+  border: 0.8rem solid white;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+#loading-page-top-content {
+  position:absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  width:100%;
+}
+
+#loading-page-top-content h2{
+  font-size:3rem;
+}
+
+#loading-page-bottom-content {
+  position:absolute;
+  left:50%;
+  bottom:10rem;
+  transform: translate(-50%, -50%);
+  font-size:2rem;
+}
+
+#loading-page-bottom-content p {
+  text-align:center;
+  margin-top:1em;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+#loading-page-bottom-content-enter {
+  animation: blink 2s infinite;
+}
+
+#experience {
+  position:fixed;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left: 0;
+  overflow: hidden;
+  z-index:1;
+}
+
+#experience-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Utilities */
+.hidden {
+  display: none;
+}
+
+@keyframes smooth-appear {
+  to{
+    top: 50%;
+    opacity:1;
+  }
+}
+@keyframes smooth-disappear {
+  from {
+    top: 50%;
+    opacity: 1;
+  }
+  to {
+    top: 150%;
+    opacity: 0;
+  }
+}
+
+/* Modal */
+.modal {
+  z-index: 99;
+  position: absolute;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width:100%;
+  max-width: 700px;
+  top: -50%;
+  background-color: #ad8671;
+  border: 2px solid #fff;
+  color: #fff;
+  opacity:0;
+  animation: smooth-appear 0.5s ease forwards;
+}
+
+.modal-exit-button {
+  transform: rotate(40deg);
+  position:absolute;
+  right:-0.8rem;
+  top:-0.8rem;
+  border: 0.2rem solid;
+  background-color: #ad8671;
+  border-color: white;
+  padding:5px;
+  transition: transform .4s;
+}
+
+.modal-exit-button:hover {
+  transform:rotate(-15deg) scale(1.3);
+  cursor:pointer;
+}
+
+.modal-wrapper {
+  padding: 12px;
+}
+
+.modal-header {
+  width: 100%;
+  display:flex;
+}
+
+.vertical-rule {
+  margin:1rem 0 1rem 0;
+}
+
+.fa {
+  padding: 15px 20px 15px 20px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  transition: transform 0.3s ease;
+}
+
+.fa:hover {
+  opacity: 0.7;
+  transform: scale(1.4);
+  transition: transform 0.3s ease;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-github {
+  background: #000;
+  color: white;
+}
+
+.fa-paper-plane {
+  background: rgb(30, 48, 80);
+  color: white;
+}
