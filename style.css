@@ -53,15 +53,44 @@
     0% {
         opacity: 1;
     }
-
     50% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
 }
+
+
+table {
+  border: 5px solid white;
+  background-color:#0d1117;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid white;
+}
+
+.icons {
+  position:absolute;
+  z-index:98;
+  right:0;
+}
+
+.icon-content {
+  margin-right:2rem;
+}
+
+.icon-content li {
+  border: 2px solid white;
+}
+
+.fa-volume-up, .fa-volume-off, .fa-sun-o, .fa-moon-o {
+  color:white;
+  background:#ad8671;
+}
+
 #loading-page-bottom-content-enter {
   animation: blink 2s infinite;
 }

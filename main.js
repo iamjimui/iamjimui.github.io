@@ -102,12 +102,14 @@ const modalContent = {
   "Chest": {
     title: "📑 About me",
     content: "Greetings, I'm Jimmy ! 👋 I've graduated from a Master of Science in Information Systems Architecture and now heading for new opportunities. I'm somewhat curious and self-taught so I learned to wear multiple hats which means combining coding, design, marketing and project management. My other passion is 3D Modelling pairing with animations and since I've learned about the existence of Three.js, I'm now channeling 3D assets into my website projects.",
-    footerTitle: "📻 Social media",
+    footerTitle: "📻 Kit & Social media",
     footerContent: null,
   }
 }
 
 const loadingPage = document.querySelector("#loading-page");
+const toggleSound = document.querySelector("#icon-sound");
+const toggleTheme = document.querySelector("#icon-theme");
 const modal = document.querySelector(".modal");
 const modalTitle = document.querySelector(".modal-title");
 const modalExitButton = document.querySelector(".modal-exit-button");
@@ -116,6 +118,20 @@ const modalFooterTitle = document.querySelector(".modal-footer-title");
 const modalProjectFooterDescription = document.querySelector(".modal-project-footer-description");
 const modalVisitProjectButton = document.querySelector(".modal-project-visit-button");
 const modalFooterSocialMedia = document.querySelector(".modal-footer-social-media");
+
+function muteSound() {
+  if (!isMuted) {
+    toggleSound.classList.remove("fa-volume-up");
+    toggleSound.classList.add("fa-volume-off");
+    sounds.backgroundMusic.pause();
+    isMuted = true;
+  } else {
+    toggleSound.classList.add("fa-volume-up");
+    toggleSound.classList.remove("fa-volume-off");
+    sounds.backgroundMusic.play();
+    isMuted = false;
+  }
+}
 
 function showModal(id) {
   const content = modalContent[id];
@@ -223,6 +239,48 @@ scene.add(shadowHelper);
 
 const ambientLight = new THREE.AmbientLight( 0x404040, 3 ); // soft white light
 scene.add( ambientLight );
+
+let isDarkTheme = false;
+
+function switchTheme() {
+  if (!isDarkTheme) {
+    toggleTheme.classList.remove("fa-moon-o");
+    toggleTheme.classList.add("fa-sun-o");
+    isDarkTheme = true;
+  } else {
+    toggleTheme.classList.add("fa-moon-o");
+    toggleTheme.classList.remove("fa-sun-o");
+    isDarkTheme = false;
+  }
+
+  gsap.to(ambientLight.color, {
+    r: isDarkTheme ? 0.25 : 1.0,
+    g: isDarkTheme ? 0.31 : 1.0,
+    b: isDarkTheme ? 0.78 : 1.0,
+    duration: 1,
+    ease: "power2.inOut",
+  });
+
+  gsap.to(ambientLight, {
+    intensity: isDarkTheme ? 0.9 : 0.8,
+    duration: 1,
+    ease: "power2.inOut",
+  });
+
+  gsap.to(directionalLight, {
+    intensity: isDarkTheme ? 0.8 : 1.0,
+    duration: 1,
+    ease: "power2.inOut",
+  });
+
+  gsap.to(directionalLight.color, {
+    r: isDarkTheme ? 0.25 : 1.0,
+    g: isDarkTheme ? 0.41 : 1.0,
+    b: isDarkTheme ? 0.88 : 1.0,
+    duration: 1,
+    ease: "power2.inOut",
+  });
+}
 
 // Camera
 const aspect = sizes.width / sizes.height;
@@ -455,6 +513,8 @@ function onKeyDown(event) {
 }
 
 loadingPage.addEventListener("click", hideLoadingPage);
+toggleSound.addEventListener("click", muteSound);
+toggleTheme.addEventListener("click", switchTheme);
 modalExitButton.addEventListener("click", hideModal);
 window.addEventListener("resize", onResize);
 window.addEventListener("click", onClick);
