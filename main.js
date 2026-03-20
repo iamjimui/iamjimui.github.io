@@ -110,6 +110,10 @@ const modalContent = {
 const loadingPage = document.querySelector("#loading-page");
 const toggleSound = document.querySelector("#icon-sound");
 const toggleTheme = document.querySelector("#icon-theme");
+const mobileUpArrow = document.querySelector(".up-arrow-wrapper");
+const mobileLeftArrow = document.querySelector(".left-arrow-wrapper");
+const mobileDownArrow = document.querySelector(".down-arrow-wrapper");
+const mobileRightArrow = document.querySelector(".right-arrow-wrapper");
 const modal = document.querySelector(".modal");
 const modalTitle = document.querySelector(".modal-title");
 const modalExitButton = document.querySelector(".modal-exit-button");
@@ -378,6 +382,7 @@ function jumpCharacter(meshID) {
 }
 
 function onClick() {
+  console.log(intersectObject);
   if (intersectObject !== "") {
     // When clicking Pokemons
     if (["Bulbasaur", "Chicken", "Pikachu", "Charmander", "Squirtle"].includes(intersectObject)) {
@@ -479,11 +484,29 @@ function updatePlayer() {
   );
 } */
 
+function pressUpArrow(event) {
+  event.key = "ArrowUp";
+  onKeyDown(event);
+}
+
+function pressLeftArrow(event) {
+  event.key = "ArrowLeft";
+  onKeyDown(event);
+}
+
+function pressDownArrow(event) {
+  event.key = "ArrowDown";
+  onKeyDown(event);
+}
+
+function pressRightArrow(event) {
+  event.key = "ArrowRight";
+  onKeyDown(event);
+}
+
 function onKeyDown(event) {
   if (character.isMoving) return;
-
   playSound("jumpSFX");
-
   switch(event.key.toLowerCase()) {
     case "w":
     case "arrowup":
@@ -515,11 +538,45 @@ function onKeyDown(event) {
 loadingPage.addEventListener("click", hideLoadingPage);
 toggleSound.addEventListener("click", muteSound);
 toggleTheme.addEventListener("click", switchTheme);
+mobileUpArrow.addEventListener("click", pressUpArrow);
+mobileLeftArrow.addEventListener("click", pressLeftArrow);
+mobileDownArrow.addEventListener("click", pressDownArrow);
+mobileRightArrow.addEventListener("click", pressRightArrow);
 modalExitButton.addEventListener("click", hideModal);
 window.addEventListener("resize", onResize);
 window.addEventListener("click", onClick);
 window.addEventListener("pointermove", onPointerMove);
 window.addEventListener("keydown", onKeyDown);
+
+window.addEventListener("mousemove", (e) => {
+  if (!modal.classList.contains("hidden")) {
+    const rect = modal.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = -(y - centerY) / 300;
+    const rotateY = (x - centerX) / 300;
+
+    modal.style.transform = `
+      perspective(600px)
+      translate(-50%, -50%)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+    `; 
+  }
+});
+window.addEventListener("mouseleave", () => {
+  modal.style.transform = `
+    perspective(400px)
+    translate(-50%, -50%)
+    rotateX(0deg)
+    rotateY(0deg)
+  `;
+});
 
 function animate() {
   updatePlayer();

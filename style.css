@@ -16,7 +16,7 @@
   height: 100%;
   position:absolute;
   background-color: #ad8671;
-  z-index:2;
+  z-index: 99;
   color: white;
   border: 0.8rem solid white;
   transform: scale(1);
@@ -49,6 +49,10 @@
   margin-top:1em;
 }
 
+#loading-page-bottom-content-enter {
+  animation: blink 2s infinite;
+}
+
 @keyframes blink {
     0% {
         opacity: 1;
@@ -74,7 +78,7 @@ th, td {
 
 .icons {
   position:absolute;
-  z-index:98;
+  z-index:2;
   right:0;
 }
 
@@ -91,8 +95,46 @@ th, td {
   background:#ad8671;
 }
 
-#loading-page-bottom-content-enter {
-  animation: blink 2s infinite;
+.up-arrow-wrapper {
+  grid-area: up-arrow-wrapper;
+}
+
+.left-arrow-wrapper {
+  grid-area: left-arrow-wrapper;
+}
+
+.down-arrow-wrapper {
+  grid-area: down-arrow-wrapper;
+}
+
+.right-arrow-wrapper {
+  grid-area: right-arrow-wrapper;
+}
+
+.mobile-controls {
+  display:none;
+}
+
+@media (max-width: 834px) {
+  .mobile-controls {
+    display:grid;
+    grid-template-columns: 4rem 4rem 4rem;
+    grid-template-rows: auto;
+    grid-template-areas:
+    ". up-arrow-wrapper ."
+    "left-arrow-wrapper down-arrow-wrapper right-arrow-wrapper";
+    position:absolute;
+    z-index:2;
+    bottom:10%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .mobile-controls * {
+    border: 2px solid white;
+    background:rgb(109, 144, 204);
+    color: white;
+  }
 }
 
 #experience {
